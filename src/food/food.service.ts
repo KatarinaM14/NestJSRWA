@@ -1,44 +1,35 @@
 import { Injectable } from '@nestjs/common';
-import { Food } from 'src/models/food';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Clothes } from 'src/clothes/models/clothes.entity';
+import { Food } from 'src/food/models/food.entity';
+import { Repository } from 'typeorm';
+import { FoodDto } from './models/food.dto';
 
 @Injectable()
 export class FoodService {
 
-    foodList : Food[]= [
-        {
-          id: 1,
-          category: "Slatkisi",
-          name: "Milka",
-          donor: "Dragana Miletic",
-          image: "https://www.fresh-store.eu/10704-large_default/milka-oreo-choco-chocolate-100-g-34-oz.jpg"
-        },
-        {
-          id: 2,
-          category: "Osnovne namirnice",
-          name: "Dijamant ulje",
-          donor: "Nenad Simic",
-          image: "https://cenoteka.rs/assets/images/articles/ulje-dijamant-1l-1002491-large.jpg"
-        },
-        {
-          id: 3,
-          category: "Osnovne namirnice",
-          name: "So",
-          donor: "Jelena Zdravkovic",
-          image: "https://cenoteka.rs/assets/images/articles/kuhinjska-so-tuzlanska-1kg-1002342-large.jpg"
-        },
-        {
-          id: 4,
-          category: "Mlecni proizvodi",
-          name: "Moja kravica",
-          donor: "Natasa Milenkovic",
-          image: "https://cenoteka.rs/assets/images/articles/dugotrajno-mleko-imlek-2-8-mm-1l-1001649-large.jpg"
-        }
-      ];
+  constructor(
+    @InjectRepository(Food) private foodRepository: Repository<Food>
+  ) {}
+   
     public getAll(){
-        return this.foodList;
+       return this.foodRepository.find();
     }
 
     public getById(id: number){
-        return this.foodList.find(food => food.id===id);
+     // return this.foodRepository.findOne(id);
     }
+
+    public async create(foodDto: FoodDto){
+      const food = this.foodRepository.create(foodDto);
+      return await this.foodRepository.save(food);
+  }
+
+  public async delete(id: number){
+    return await this.foodRepository.delete(id);
+  }
+
+  public async update(id: number, dto: FoodDto){
+      return await this.foodRepository.update(id, dto);
+  }
 }
