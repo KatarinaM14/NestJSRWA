@@ -16,7 +16,7 @@ export class ClothesService {
     }
 
     public getById(id: number){
-       //return this.clothesRepository.findOne(id);
+       //return this.clothesRepository.findOneBy(id);
     }
 
     public async create(clothesDto: ClothesDto){

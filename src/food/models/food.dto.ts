@@ -4,5 +4,5 @@ export class FoodDto {
     name : string | null;
     donor : string | null;
     image : string | null;
-    like : number;
+   // like : number | null;
 }

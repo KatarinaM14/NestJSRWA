@@ -17,8 +17,8 @@ export class Clothes {
     @Column()
     image: string;
 
-    @Column()
-    like: number;
+    //@Column()
+    //like: number;
 }
 
 // export var ClothesModel: Clothes = {

@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Clothes } from 'src/clothes/models/clothes.entity';
-import { Food } from 'src/food/models/food.entity';
+
 import { Repository } from 'typeorm';
 import { FoodDto } from './models/food.dto';
+import { Food } from './models/food.entity';
+
 
 @Injectable()
 export class FoodService {

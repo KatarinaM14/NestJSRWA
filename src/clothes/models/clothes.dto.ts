@@ -4,5 +4,5 @@ export class ClothesDto {
     donor : string;
     description : string;
     image: string;
-    like: number;
+    //like: null | number;
 }

@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Volunteering } from 'src/volunteering/models/volunteering.entity';
 import { Repository } from 'typeorm';
 import { VolunteeringDto } from './models/volunteering.dto';
+import { Volunteering } from './models/volunteering.entity';
+
 
 @Injectable()
 export class VolunteeringService {
