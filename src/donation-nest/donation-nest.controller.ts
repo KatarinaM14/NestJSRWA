@@ -63,6 +63,11 @@ export class DonationNestController {
            return await this.donationNestService.update(donation);
    }
 
+   @Put("donation")
+   public async updateDonation( @Body() dto:DonationNest){
+      
+          return await this.donationNestService.update(dto);
+  }
    @Delete(":id")
     public deleteDonation(@Param("id", ParseIntPipe) id: number) {
             return this.donationNestService.delete(id);

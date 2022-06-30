@@ -12,7 +12,11 @@ export class DonationNestService {
       ) {}
 
       public getAll(){
-        return this.donationNestRepository.find();
+        return this.donationNestRepository.find({
+          relations: {
+            donator: true
+          }
+        });
      }
      public getById(id: any){
         return this.donationNestRepository.findOne(id);

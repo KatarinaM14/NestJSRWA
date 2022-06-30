@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { UserNest } from 'src/user-nest/entities/user-nest.entity';
 import { UserNestService } from 'src/user-nest/user-nest.service';
 import { VolunteeringsNestDto } from './entities/volunteering-nest.dto';
+import { VolunteeringsNest } from './entities/volunteering-nest.entity';
 import { VolunteeringNestService } from './volunteering-nest.service';
 
 @Controller('volunteering-nest')
@@ -57,6 +58,12 @@ export class VolunteeringNestController {
         }
 
             return await this.volunteeringNestService.update(volunteering);
+    }
+
+    @Put("volunteering")
+     public async updateVolunteering( @Body() dto:VolunteeringsNest){
+        
+            return await this.volunteeringNestService.update(dto);
     }
 
     @Delete(":id")

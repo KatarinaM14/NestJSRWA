@@ -3,6 +3,7 @@ import { DonationNestDto } from 'src/donation-nest/entities/donation-nest.dto';
 import { DonationNest } from 'src/donation-nest/entities/donation-nest.entity';
 import { VolunteeringsNest } from 'src/volunteering-nest/entities/volunteering-nest.entity';
 import { UserNestDto } from './entities/user-nest.dto';
+import { UserNest } from './entities/user-nest.entity';
 import { UserNestService } from './user-nest.service';
 
 @Controller('user-nest')
@@ -20,6 +21,21 @@ export class UserNestController {
     @Post()
     public addUserNest(@Body() dto: UserNestDto) {
             return this.userNestService.create(dto);
+    }
+
+    @Put('friend/:id')
+    public async addFrined(@Param('id', ParseIntPipe) id:number,@Body() dto: UserNest) {
+            const user = await this.userNestService.getAll();
+
+            user.forEach(u => {
+                if(u.id === id){
+                    dto.friends = [u];
+                }
+
+            })
+
+            
+            return await this.userNestService.update(dto);
     }
 
     @Put("donation/:id")

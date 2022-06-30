@@ -12,7 +12,11 @@ export class VolunteeringNestService {
       ) {}
 
       public getAll(){
-        return this.volunteeringNestRepository.find();
+        return this.volunteeringNestRepository.find({
+          relations: {
+            volunteer: true
+          }
+        });
      }
       
       public getById(id: any){
